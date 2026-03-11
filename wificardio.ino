@@ -9,8 +9,8 @@
 #include "page.h"
 
 
-const char* ssid = "ECG";
-const char* password = "cardio2026!";
+const char* ssid = "ECG";     //put your AP name
+const char* password = "cardio2026!"; // your password
 
 #define SENSOR A0
 #define D5_PIN D5
@@ -34,11 +34,6 @@ static WebSocketsServer webSocket(81);
 struct Sample {
   uint16_t value;
   //uint32_t ts;  // timestamp en ms
-};
-
-struct Packet {
-  uint16_t n;  // número de samples
-  Sample samples[BUF_SIZE];
 };
 
 Sample bufferA[BUF_SIZE];
