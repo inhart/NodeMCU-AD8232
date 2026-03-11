@@ -1,6 +1,8 @@
+# NodeMCU 1.0 + AD8232
+
 <img src="./img/gui.PNG" width="800" height="600">
 
-# NodeMCU-AD8232
+
 
 
 
