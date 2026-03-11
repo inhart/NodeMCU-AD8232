@@ -1,6 +1,6 @@
 # NodeMCU-AD8232
 
-<img src="./img/gui.png" width="600" height="300">
+<img src="./img/gui.PNG" width="600" height="300">
 
 I've seen a lot of example code for the NodeMCU board that reads the analog output of the AD8232 circuit.
 
@@ -14,4 +14,4 @@ A button for downloading data to a csv file added.
 
 Ideal wave shape vs output data
 
-<img src="./img/gui.png" width="300" height="200"> <img src="./img/Captura.png" width="300" height="200">
+<img src="./img/ideal.png" width="300" height="200"> <img src="./img/Captura.PNG" width="300" height="200">
