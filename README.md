@@ -1,6 +1,8 @@
+<img src="./img/gui.PNG" width="800" height="600">
+
 # NodeMCU-AD8232
 
-<img src="./img/gui.PNG" width="600" height="300">
+
 
 I've seen a lot of example code for the NodeMCU board that reads the analog output of the AD8232 circuit.
 
