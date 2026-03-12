@@ -38,4 +38,4 @@ A button for downloading data to a csv file added.
 
 Ideal wave shape vs output data
 
-<img src="./img/ideal.png" width="300" height="200"> <img src="./img/Captura.PNG" width="300" height="200">
+<img src="./img/ideal.png" width="400" height="400"> <img src="./img/Captura.PNG" width="400" height="400">
