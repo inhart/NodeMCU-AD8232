@@ -3,42 +3,51 @@
 
 
 
-### The wiring betwen NodeMCU and AD8232: ###
+## Wiring NodeMCU and AD8232:
 
-	### NodeMCU <-------> AD8232	###
-	###   3.3V        		3.3V	###
-	###   Gnd               Gnd		###
-	###    D5               LO+		###
-	###    D6               LO-		###
-	###    A0    		  Output	###
+<p align=center>		NodeMCU	<------->		AD8232
 
+<p align=center>		 3.3V	<------->		3.3V
 
+<p align=center>		 Gnd	<------->		Gnd
+
+<p align=center>		 D5		<------->		LO+
+
+<p align=center>		 D6		<------->		LO-
+
+<p align=center>		 A0		<------->		Output
+
+## The correct wiring is:
+
+One of the problems was that the green and yellow wires are swapped.
+
+<p align=center>  RED: 	Rigth Arm
+<p align=center>  GREEN: 	Left Arm
+<p align=center>  YELLOW: Rigth Leg
+
+## Notes:
 
 I've seen a lot of example code for the NodeMCU board that reads the analog output of the AD8232 circuit.
 
 Even so, I couldn't get a clean ECG.
-<img src="./img/samp.png" width="800" height="600">
-
-One of the problems was that the green and yellow wire are swapped.
-
-## The correct wiring is:
-	
-	### RED: 	Rigth Arm ###
-	### GREEN: 	Left Arm  ###
-	### YELLOW: Rigth Leg ###
+<p align=center> <img src="./img/samp.png" width="800" height="600">
 
 
 
 
-#### So here's the code I've developed implementing all the lessons learned in the way.
 
-#### In summary, NodeMCU creates an AP and a web server that displays an interface that receives data 
-#### from the NodeMCU via websocket; the main page's JavaScript code receives, processes, and displays 
-#### the data, both in the time domain and a fast FFT showing the frequency domain.
-<img src="./img/gui.PNG" width="800" height="600">
+
+
+
+So here's the code I've developed implementing all the lessons learned in the way.
+
+In summary, NodeMCU creates an AP and a web server that displays an interface that receives data 
+from the NodeMCU via websocket; the main page's JavaScript code receives, processes, and displays 
+the data, both in the time domain and a fast FFT showing the frequency domain.
+<p align=center> <img src="./img/gui.PNG" width="800" height="600">
 
 A button for downloading data to a csv file added.
 
 Ideal wave shape vs output data
 
-<img src="./img/ideal.png" width="400" height="400"> <img src="./img/Captura.PNG" width="400" height="400">
+<p align=center> <img src="./img/ideal.png" width="400" height="400"> <img src="./img/Captura.PNG" width="400" height="400">
