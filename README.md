@@ -17,7 +17,7 @@
 
 <p align=center>		 A0		<------->		Output
 
-## The correct wiring is:
+## The correct wiring for AD8232 electrodes is:
 
 One of the problems was that the green and yellow wires are swapped.
 
