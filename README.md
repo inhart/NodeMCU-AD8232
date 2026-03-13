@@ -39,6 +39,6 @@ the data, both in the time domain and a fast FFT showing the frequency domain.
 
 A button for downloading data to a csv file added.
 
-Ideal wave shape vs output data
+## Ideal wave shape vs Output data:
 
 <p align=center> <img src="./img/ideal.png" width="400" height="400"> <img src="./img/Captura.PNG" width="400" height="400">
