@@ -1,5 +1,5 @@
 # NodeMCU 1.0 + AD8232
-<img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTs0_kHS-qO_5LuMocPUtPVxjyA4mh1a_p5uNvASwy8NkDD-W3LELJcOkQ3iUvVlCHlD2h-LAv10bhHPGxl_tfvPJsS_aCS4iB2TrH6HzgFtTDmentPo5R92fTX6CJBUgjrXrG6OrAV0Q&usqp=CAc" width="200" height="200"> <img src="https://diotronic.com/35349-large_default/nodemcu-v2-lua-based-esp8266.jpg" width="200" height="200">
+<p align=Centert><img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTs0_kHS-qO_5LuMocPUtPVxjyA4mh1a_p5uNvASwy8NkDD-W3LELJcOkQ3iUvVlCHlD2h-LAv10bhHPGxl_tfvPJsS_aCS4iB2TrH6HzgFtTDmentPo5R92fTX6CJBUgjrXrG6OrAV0Q&usqp=CAc" width="200" height="200"> <img src="https://diotronic.com/35349-large_default/nodemcu-v2-lua-based-esp8266.jpg" width="200" height="200">
 
 ## Wiring NodeMCU and AD8232:
 
