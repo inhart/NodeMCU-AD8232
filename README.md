@@ -1,8 +1,6 @@
 # NodeMCU 1.0 + AD8232
 <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTs0_kHS-qO_5LuMocPUtPVxjyA4mh1a_p5uNvASwy8NkDD-W3LELJcOkQ3iUvVlCHlD2h-LAv10bhHPGxl_tfvPJsS_aCS4iB2TrH6HzgFtTDmentPo5R92fTX6CJBUgjrXrG6OrAV0Q&usqp=CAc" width="500" height="500"> <img src="https://diotronic.com/35349-large_default/nodemcu-v2-lua-based-esp8266.jpg" width="500" height="500">
 
-
-
 ## Wiring NodeMCU and AD8232:
 
 <p align=center>		NodeMCU	<------->		AD8232
@@ -31,13 +29,6 @@ I've seen a lot of example code for the NodeMCU board that reads the analog outp
 
 Even so, I couldn't get a clean ECG.
 <p align=center> <img src="./img/samp.png" width="800" height="600">
-
-
-
-
-
-
-
 
 So here's the code I've developed implementing all the lessons learned in the way.
 
