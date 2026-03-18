@@ -17,7 +17,7 @@
 
 ## The correct wiring for AD8232 electrodes is:
 
-One of the problems was that the green and yellow wires are swapped.
+One of the problems was that the green and yellow wires were swapped.
 
 <p align=center>  RED: 	Rigth Arm
 <p align=center>  GREEN: 	Left Arm
