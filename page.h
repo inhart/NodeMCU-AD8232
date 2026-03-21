@@ -208,8 +208,10 @@ if (
   lastPeakTime = now;
 }
     data.push(senalCentrada); // Desplazar para que esté en rango positivo
-    if (data.length > MAX_SAMPLES) data.shift();
-
+    if (data.length > MAX_SAMPLES) {
+      data.shift();
+      ts.shift();
+}
     csvContent.push({
       timestamp: new Date().toISOString(),
       ts: ts,
@@ -268,53 +270,62 @@ downloadBtn.onclick = () => {
   a.click();
   document.body.removeChild(a);
 };
+
 function mapValue(x, inMin, inMax, outMin, outMax) {
   return (x - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 };
+
 async function draw() {
   ctx.clearRect(0, 0, WIDTH, HEIGHT);
-  
-  if (data.length < 2) return;
+
+  if (data.length < 2 || ts.length < 2) return;
 
   ctx.strokeStyle = "#00ff88";
-  ctx.lineWidth = 1.5; // Un poco más grueso para apreciar el suavizado
+  ctx.lineWidth = 1.5;
   ctx.lineJoin = "round";
   ctx.lineCap = "round";
   ctx.beginPath();
 
-  // El factor 4ms (FS=250) ya está implícito en la relación 
-  // entre MAX_SAMPLES y el ancho del canvas. 
-  // Si MAX_SAMPLES representa el tiempo visible total:
-  
-  let i = 0;
-  const getX = (index) => (index / MAX_SAMPLES) * WIDTH;
+  // Rango temporal visible
+  const tMin = ts[0];
+  const tMax = ts[ts.length - 1];
+  const tRange = tMax - tMin || 1; // evitar división por 0
+
+  const getX = (t) => ((t - tMin) / tRange) * WIDTH;
   const getY = (value) => mapValue(value, 0, 1023, HEIGHT, 0);
 
-  ctx.moveTo(getX(0), getY(data[0]));
+  ctx.moveTo(getX(ts[0]), getY(data[0]));
 
-  // Algoritmo de Spline mediante puntos medios y quadraticCurveTo
+  let i = 0;
+
+  // spline usando timestamps reales
   for (i = 1; i < data.length - 2; i++) {
-    const xc = (getX(i) + getX(i + 1)) / 2;
-    const yc = (getY(data[i]) + getY(data[i + 1])) / 2;
-    ctx.quadraticCurveTo(getX(i), getY(data[i]), xc, yc);
+    const x0 = getX(ts[i]);
+    const y0 = getY(data[i]);
+
+    const x1 = getX(ts[i + 1]);
+    const y1 = getY(data[i + 1]);
+
+    const xc = (x0 + x1) / 2;
+    const yc = (y0 + y1) / 2;
+
+    ctx.quadraticCurveTo(x0, y0, xc, yc);
   }
 
-  // Para los últimos dos puntos
-  if (i > 0) {
+  // últimos puntos
+  if (i > 0 && i + 1 < data.length) {
     ctx.quadraticCurveTo(
-      getX(i), 
-      getY(data[i]), 
-      getX(i + 1), 
+      getX(ts[i]),
+      getY(data[i]),
+      getX(ts[i + 1]),
       getY(data[i + 1])
     );
   }
 
   ctx.stroke();
 
-  // Llamar a FFT
   drawFFT();
 }
-
 function fftReal(signal) {
   const N = signal.length;
   let re = new Array(N).fill(0);
