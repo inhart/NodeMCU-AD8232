@@ -157,11 +157,12 @@ const HEIGHT = canvas.height;
 
 var suma = 0;
 var media = 512.0; // Usamos float para mayor precisión
-var factorSuavizado = 0.0; // Valor entre 0.01 y 1 (más bajo = más estable)
+var factorSuavizado = 0.0; // Valor entre 0.01 y 1 (más alto = más estable)
 var senalCentrada = 0.0;
 var fpb = 0;
 var MAX_SAMPLES = 18000;
 let data = [];
+let ts = [];
 let csvContent = [];
 let lastVal = 0;
 
@@ -176,11 +177,17 @@ ws.onmessage = (event) => {
   const buf = event.data;
   const view = new DataView(buf);
 
-  for (let i = 0; i < buf.byteLength; i += 2) {
-    const val = view.getUint16(i, true);
-    
-    if (Math.abs(val) <= fpb){
-        val = 0;
+  for (let i = 0; i < buf.byteLength; i += 6) {
+    const tist = view.getUint32(i, true);      // primeros 4 bytes
+    let val = view.getUint16(i + 4, true);     // siguientes 2 bytes
+
+    if (Math.abs(val) <= fpb) {
+      val = 0;
+    }
+
+    ts.push(tist);
+    data.push(val);
+  }
 };
  
     media = (val * factorSuavizado) + (media * (1.0 - factorSuavizado));
@@ -205,6 +212,7 @@ if (
 
     csvContent.push({
       timestamp: new Date().toISOString(),
+      ts: ts,
       valor: val,
       fvalor: senalCentrada
 
@@ -244,9 +252,9 @@ console.log("Nuevo suavizado:", factorSuavizado);
 downloadBtn.onclick = () => {
   if (csvContent.length === 0) return alert("No hay datos");
 
-  let csvRows = ["Timestamp,Valor,fValor,BMP"];
+  let csvRows = ["Timestamp,Ts,Valor,fValor"];
   csvContent.forEach(row => {
-    csvRows.push(`${row.timestamp},${row.valor},${row.fvalor}`);
+    csvRows.push(`${row.timestamp},=${row.ts},${row.valor},${row.fvalor}`);
   });
 
   const blob = new Blob([csvRows.join("\n")], { type: 'text/csv' });
