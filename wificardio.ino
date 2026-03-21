@@ -9,8 +9,8 @@
 #include "page.h"
 
 
-const char* ssid = "ECG";     //put your AP name
-const char* password = "cardio2026!"; // your password
+const char* ssid = "ECG";              //put your AP name
+const char* password = "cardio2026!";  // your password
 
 #define SENSOR A0
 #define D5_PIN D5
@@ -32,8 +32,9 @@ static WebSocketsServer webSocket(81);
 
 // --- Double Buffer ---
 struct Sample {
+
   uint16_t value;
-  //uint32_t ts;  // timestamp en ms
+  uint32_t ts;  // timestamp en ms
 };
 
 Sample bufferA[BUF_SIZE];
@@ -66,7 +67,8 @@ void IRAM_ATTR sampleECG() {
 
     //delay(1);
     writeBuf[idx].value = system_adc_read();  //& 0x03ff constrain(val, 0, 1023);
-    //writeBuf[idx].ts =system_get_time();;
+    writeBuf[idx].ts = system_get_time();
+    ;
     idx++;
     if (idx >= BUF_SIZE) {
       // swap buffers
@@ -87,13 +89,12 @@ void enviarWebSocket() {
 
 
   //ws.binaryAll((uint8_t*)sendBuf, sizeof(Sample) * BUF_SIZE);
-  uint8_t payload[BUF_SIZE * 2];
+  uint8_t payload[BUF_SIZE * 6];
   uint16_t p = 0;
   //uint16_t siz = sizeof(&sendBuf->value);
   for (int i = 0; i < BUF_SIZE; i++) {
-    //  memcpy(&payload[p], &sendBuf[i].ts, 4);
-    //  p += 4;
-
+    memcpy(&payload[p], &sendBuf[i].ts, 4);
+    p += 4;
     memcpy(&payload[p], &sendBuf[i].value, 2);
     p += 2;
   }
